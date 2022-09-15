@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from wishlist.models import ItemWishlist
+from django.http import HttpResponse
 
 # Create your views here.
 def show_wishlist(request):
