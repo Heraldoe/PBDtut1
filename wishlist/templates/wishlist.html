@@ -1,8 +1,39 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<h5>Name: </h5>
-<p>{{name}}</p>
+<style>
+    table{
+        margin-left: auto;
+        margin-right: auto;
+        align-self: center;
+        align-items: center;
+        background-color: pink;
+        border-collapse: collapse;
+        border: 2px solid yellow;
+    }
+    h5, p {
+        text-align: center;
+    }
+</style>
+<body style="background-color: gray ;">
+
+<nav class="navbar default navbar-expand-lg navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Halomoan Geraldo</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'wishlist:logout' %}">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<h5>Wishlist</h5>
+<p></p>
 
 <table>
     <tr>
@@ -19,7 +50,6 @@
     </tr>
 {% endfor %}
 </table>
-<h5>Last Login: {{ last_login }}</h5>
-<button><a href="{% url 'wishlist:logout' %}">Logout</a></button>
-
+<h7>Last Login: {{ last_login }}</h7>
+</body>
 {% endblock content %}
