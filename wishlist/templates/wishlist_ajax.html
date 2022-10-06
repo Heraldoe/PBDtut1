@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    table{
+        margin-left: auto;
+        margin-right: auto;
+        align-self: center;
+        align-items: center;
+        background-color: pink;
+        border-collapse: collapse;
+        border: 2px solid yellow;
+    }
+    h5, p {
+        text-align: center;
+    }
+</style>
+<body style="background-color: gray ;">
+
+<nav class="navbar default navbar-expand-lg navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Halomoan Geraldo</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'wishlist:logout' %}">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<h5>Wishlist</h5>
+<p></p>
+
+<table>
+    <tr>
+    <th>Item Name</th>
+    <th>Item Price</th>
+    <th>Description</th>
+    </tr>
+    {% comment %} Add the data below this line {% endcomment %}
+    {% for item in list_item %}
+    <tr>
+        <th>{{item.item_name}}</th>
+        <th>{{item.item_price}}</th>
+        <th>{{item.description}}</th>
+    </tr>
+{% endfor %}
+</table>
+<h7>Last Login: {{ last_login }}</h7>
+</body>
+
+{% endblock content %}
+
+<script>
+    $(document).ready(() => {
+        const url = "http://127.0.0.1:8000/wishlist/json";
+        $.get(url, (data) => {
+            data.forEach((item) => {
+                var item_name = item.fields.item_name;
+                var item_price = item.fields.item_name;
+                var item_description = item.fields.descriptions;
+                var html = "<tr><td>" + item_name +
+                            "<tr><td>" + item_price + 
+                            "<tr><td>" + item_description + "</td>";
+                $("tbody").append(html);
+            })
+        });
+    });
